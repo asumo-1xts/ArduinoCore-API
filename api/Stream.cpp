@@ -83,6 +83,16 @@ int Stream::peekNextDigit(LookaheadMode lookahead, bool detectDecimal)
   }
 }
 
+// strlen() for uint8_t*
+size_t strlen_uint8(const uint8_t* str) {
+    if (str == nullptr) return 0; // return 0 for null pointer
+    const uint8_t* p = str;
+    while (*p != 0x00) {
+        p++;
+    }
+    return static_cast<size_t>(p - str);
+}
+
 // Public Methods
 //////////////////////////////////////////////////////////////
 
