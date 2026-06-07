@@ -102,28 +102,28 @@ void Stream::setTimeout(unsigned long timeout)  // sets the maximum number of mi
 }
 
  // find returns true if the target string is found
-bool  Stream::find(const char *target)
+bool  Stream::find(const uint8_t *target)
 {
-  return findUntil(target, strlen(target), NULL, 0);
+  return findUntil(target, strlen_uint8(target), NULL, 0);
 }
 
 // reads data from the stream until the target string of given length is found
 // returns true if target string is found, false if timed out
-bool Stream::find(const char *target, size_t length)
+bool Stream::find(const uint8_t *target, size_t length)
 {
   return findUntil(target, length, NULL, 0);
 }
 
 // as find but search ends if the terminator string is found
-bool  Stream::findUntil(const char *target, const char *terminator)
+bool  Stream::findUntil(const uint8_t *target, const uint8_t *terminator)
 {
-  return findUntil(target, strlen(target), terminator, strlen(terminator));
+  return findUntil(target, strlen_uint8(target), terminator, strlen_uint8(terminator));
 }
 
 // reads data from the stream until the target string of the given length is found
 // search terminated if the terminator string is found
 // returns true if target string is found, false if terminated or timed out
-bool Stream::findUntil(const char *target, size_t targetLen, const char *terminator, size_t termLen)
+bool Stream::findUntil(const uint8_t *target, size_t targetLen, const uint8_t *terminator, size_t termLen)
 {
   if (terminator == NULL) {
     MultiTarget t[1] = {{target, targetLen, 0}};
